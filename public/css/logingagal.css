@@ -1,0 +1,176 @@
+/* Styling Dasar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa; /* Warna latar belakang umum */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Wrapper Utama (Split Screen) */
+.main-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- Styling Bagian Kiri --- */
+.left-section {
+    flex: 1;
+    background-color: #1a1a1a; /* Warna hitam elegan */
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif; /* Font Serif Elegan */
+    font-weight: 700;
+}
+
+.logo-img {
+    height: 24px;
+    margin-right: 10px;
+}
+
+.parfum-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+.parfum-img {
+    max-height: 100%;
+    width: auto;
+}
+
+.text-container {
+    padding-bottom: 20px;
+}
+
+.headline {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.sub-headline {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* --- Styling Bagian Kanan --- */
+.right-section {
+    flex: 1;
+    background-color: #fffaf0; /* Warna cream lembut */
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.welcome-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Styling Pesan Error (Warna Gagal Merah) */
+.alert-danger {
+    background-color: #fdf2f2;
+    border-color: #fdf2f2;
+    color: #d9534f;
+    font-size: 13px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.error-icon {
+    height: 16px;
+    margin-right: 10px;
+}
+
+/* Styling Form & Input */
+.form-label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Menambahkan Merah pada Field yang Invalid (Bootstrap) */
+.form-control.is-invalid, 
+.input-group.is-invalid .form-control {
+    border-color: #d9534f;
+}
+
+.error-text {
+    font-size: 11px;
+    margin-top: 3px;
+    margin-bottom: 0;
+}
+
+.forgot-password-link {
+    font-size: 11px;
+    color: #888;
+    text-decoration: none;
+}
+
+/* Styling Tombol LOGIN (Warna Emas/Coklat) */
+.btn-login {
+    background-color: #d4ac7c;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 12px;
+    margin-top: 15px;
+}
+
+.btn-login:hover {
+    background-color: #c49c6c;
+}
+
+.register-text {
+    font-size: 12px;
+    color: #666;
+}
+
+.register-link {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}

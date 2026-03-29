@@ -15,7 +15,7 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Menampilkan halaman registrasi.
      */
     public function create(): View
     {
@@ -23,9 +23,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Menangani proses pendaftaran akun baru.
      */
     public function store(Request $request): RedirectResponse
     {
@@ -41,10 +39,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Memicu event Registered Laravel
         event(new Registered($user));
 
-        Auth::login($user);
+        // Jika ingin user langsung login otomatis setelah daftar, aktifkan baris di bawah ini:
+        // Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Mengirimkan session success_message ke halaman sebelumnya
+        return back()->with('success_message', 'Registrasi Berhasil!');
     }
 }

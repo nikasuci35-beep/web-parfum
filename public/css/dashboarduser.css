@@ -1,0 +1,88 @@
+/* Base Style */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body.bg-light { background-color: #fbfbfb; font-family: 'Plus Jakarta Sans', sans-serif; color: #1a1a1a; }
+.playfair { font-family: 'Playfair Display', serif; }
+.container-main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+/* Navbar Presisi */
+.navbar-elixire { background: #fff; border-bottom: 1px solid #f0f0f0; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; }
+.nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; letter-spacing: 2px; }
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a { text-decoration: none; color: #888; font-size: 11px; font-weight: 700; transition: 0.3s; }
+.nav-links a:hover { color: #c5a059; }
+
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.search-wrapper { background: #f5f5f5; border-radius: 20px; padding: 6px 15px; }
+.search-wrapper input { border: none; background: transparent; outline: none; font-size: 12px; width: 150px; }
+.action-icons { display: flex; gap: 15px; font-size: 18px; cursor: pointer; }
+.icon-badge { position: relative; }
+.icon-badge span { position: absolute; top: -5px; right: -8px; background: #000; color: #fff; font-size: 9px; padding: 1px 4px; border-radius: 50%; }
+
+.user-pill { display: flex; align-items: center; gap: 10px; padding-left: 15px; border-left: 1px solid #eee; }
+.user-meta { text-align: right; line-height: 1; }
+.user-meta small { font-size: 8px; color: #aaa; }
+.user-meta strong { display: block; font-size: 12px; }
+.user-pill img { width: 35px; height: 35px; border-radius: 50%; }
+
+/* Hero Card (Kotak Putih Seperti Gambar 2) */
+.hero-card { background: #fff; border-radius: 25px; padding: 60px; box-shadow: 0 10px 40px rgba(0,0,0,0.02); margin-bottom: 60px; }
+.hero-inner { display: flex; align-items: center; justify-content: space-between; background: #f9f5ef; border-radius: 20px; padding: 50px; }
+.hero-left { flex: 1; }
+.welcome-text { font-family: 'Playfair Display', serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 15px; }
+.hero-subtext { color: #888; max-width: 400px; margin-bottom: 30px; font-size: 14px; }
+.btn-gold-fill { background: #c5a059; color: #fff; border: none; padding: 12px 35px; border-radius: 8px; font-weight: 700; margin-right: 15px; cursor: pointer; }
+.btn-outline-gray { background: #fff; border: 1px solid #e0e0e0; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+.hero-right { position: relative; }
+.perfume-frame { background: #fff; padding: 15px; box-shadow: 10px 10px 50px rgba(0,0,0,0.05); transform: rotate(5deg); }
+.perfume-frame img { width: 200px; border-radius: 5px; }
+
+/* Kategori */
+.sec-wrap { margin-bottom: 60px; }
+.sec-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.gold-link { color: #c5a059; font-weight: 700; font-size: 11px; text-decoration: underline; }
+
+.category-flex { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+.cat-box { height: 180px; border-radius: 15px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; position: relative; overflow: hidden; cursor: pointer; }
+.cat-box::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.2); }
+.cat-box span { z-index: 1; text-transform: capitalize; }
+
+.cat-luxury-card { background: #fff; border-radius: 15px; border: 1px solid #f0f0f0; overflow: hidden; }
+.cat-luxury-card img { width: 100%; height: 110px; object-fit: cover; }
+.lux-label { padding: 12px; }
+.lux-label small { font-size: 9px; color: #c5a059; font-weight: 700; }
+.lux-label strong { display: block; font-size: 12px; font-family: 'Playfair Display', serif; }
+
+/* Product Grid */
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.item-card { background: #fff; border-radius: 15px; border: 1px solid #f2f2f2; padding: 15px; transition: 0.3s; }
+.item-img { position: relative; margin-bottom: 15px; }
+.item-img img { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; }
+.heart-icon { position: absolute; top: 10px; right: 10px; background: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; }
+.item-info h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin: 8px 0; }
+.item-info p { font-size: 12px; color: #aaa; margin-bottom: 15px; }
+.rating { color: #c5a059; font-size: 10px; }
+.card-bottom { display: flex; justify-content: space-between; align-items: center; }
+.price { font-weight: 800; font-size: 16px; }
+.btn-add { background: #1a1a1a; color: #fff; border: none; padding: 6px 15px; border-radius: 5px; font-size: 10px; cursor: pointer; }
+
+/* Table Section */
+.table-elix { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.table-elix th { text-align: left; padding: 15px; color: #aaa; font-size: 11px; border-bottom: 1px solid #f5f5f5; }
+.table-elix td { padding: 15px; font-size: 12px; border-bottom: 1px solid #f5f5f5; }
+.tbl-perfume { display: flex; align-items: center; gap: 12px; }
+.tbl-perfume img { border-radius: 8px; }
+.dot-gold { width: 7px; height: 7px; background: #c5a059; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.btn-retail { color: #1a1a1a; font-weight: 800; text-decoration: none; font-size: 11px; }
+
+/* Footer Black */
+.footer-black { background: #1a1a1a; color: #fff; padding: 80px 8%; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr 1.5fr; gap: 40px; }
+.f-col-logo p { color: #888; font-size: 13px; margin: 20px 0; line-height: 1.6; }
+.f-col h4 { font-size: 12px; color: #c5a059; margin-bottom: 25px; letter-spacing: 1px; }
+.f-col a { display: block; color: #888; text-decoration: none; margin-bottom: 12px; font-size: 13px; transition: 0.3s; }
+.subscribe-box { background: #2a2a2a; padding: 5px; border-radius: 8px; display: flex; margin-top: 20px; }
+.subscribe-box input { background: transparent; border: none; color: #fff; padding: 10px; flex: 1; outline: none; }
+.subscribe-box button { background: #c5a059; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; }

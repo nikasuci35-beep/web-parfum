@@ -4,60 +4,50 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\BerandaController;
-use App\Models\Product; // Pastikan ini ada di paling atas file
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Models\Product;
 
-Route::get('/', function () {
-    $products = Product::all(); // Mengambil data
-    return view('beranda', compact('products')); // Mengirim ke file beranda.blade.php
-});
+// 1. Home
+Route::get('/', [BerandaController::class, 'index'])->name('home');
 
+// 2. Auth
 Route::get('/login', function () {
-    return view('auth.login'); // Sesuaikan jika file login ada di folder resources/views/auth/login.blade.php
+    return view('auth.login');
 })->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
-Route::post('/login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class,'store']);
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+// Tambahkan ini di bawah baris 22 (setelah route register)
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::get('/register', function () {
-    return view('auth.register'); 
-})->name('register');
-
-//web index
-Route::get('/', [BerandaController::class,'index']);
-
-// TAMBAHKAN INI DI BARIS 16
 Route::get('/search', [BerandaController::class, 'search'])->name('search');
 
-//user routes
+// 3. Protected Routes
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        if (auth()->user()->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('user.dashboard');
+    })->name('dashboard');
 
-//Dasboard User
-Route::get('/dashboard', function () {
-    if (auth()->user()->role == 'admin'){
-        return redirect('/admin/dashboard');
-    }
-    return view('user.dashboard');
-})->name('dashboard');
+    Route::get('/user/dashboard', function () {
+        return view('user.dashboard');
+    })->name('user.dashboard');
 
-//Profil User (default Breeze)
-    Route::get('/profile', [ProfileController::class, 'edit'])
-    ->name('profile.edit');
-
-    Route::patch('/profile', [ProfileController::class, 'update'])
-    ->name('profile.update');
-
-    Route::delete('/profile', [ProfileController::class, 'destroy'])
-    ->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//admin routes
+// 4. Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-
     Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-    })->name('admin.dashboard');
-    
+        return view('admin.dashboard');
+    })->name('dashboard');
     Route::resource('products', ProductController::class);
 });
 
-//auth routes
 require __DIR__.'/auth.php';

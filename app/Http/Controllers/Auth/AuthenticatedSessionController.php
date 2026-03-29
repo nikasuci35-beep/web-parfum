@@ -24,14 +24,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Bagian ini akan memanggil fungsi authenticate() di LoginRequest.
+        // Jika gagal, Laravel otomatis balik ke halaman login dengan error.
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        if (auth()->user()->role === "admin") {
-            return redirect()->route('admin.dashboard');
+        // Logika Role-Based Redirect
+        if ($request->user()->role === "admin") {
+            return redirect()->intended(route('admin.dashboard'));
         }
-        return redirect()->route('dashboard');
+        
+        return redirect()->intended(route('dashboard'));
     }
 
     /**

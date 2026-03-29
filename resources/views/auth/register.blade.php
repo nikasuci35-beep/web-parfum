@@ -1,185 +1,109 @@
 <!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>ÉLIXIRÉ - Buat Akun</title>
-    <link rel="stylesheet" href="{{ asset('css/regristrasi.css') }}" />
-  </head>
-  <body>
-    <main class="register">
-      <div class="main">
-        <!-- Left Side: Branding / Hero Image -->
-        <section class="left-side-dramatic" aria-label="Branding">
-          <div class="background"><div class="gradient"></div></div>
-          <div class="branding-overlay">
-            <div class="container">
-              <div class="div-wrapper">
-                <div class="SVG">
-                  <img class="vector" src="img/vector.svg" alt="ÉLIXIRÉ logo icon" />
-                </div>
-              </div>
-              <div class="heading">
-                <div class="text">ÉLIXIRÉ</div>
-              </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ÉLIXIRÉ</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="antialiased font-sans bg-white text-gray-900">
+    <div class="flex min-h-screen w-full">
+        
+        <div class="hidden lg:flex lg:w-1/2 relative items-end pb-24 pl-16 bg-black">
+            <img src="{{ asset('img/bg-login.jpg') }}" class="absolute inset-0 w-full h-full object-cover opacity-60">
+            
+            <div class="absolute top-10 left-10 z-20">
+                <h3 class="text-white font-bold tracking-[0.3em] text-xl">ÉLIXIRÉ</h3>
             </div>
-            <div class="div">
-              <div class="scent-of-authority-wrapper">
-                <p class="scent-of-authority">
-                  <span class="text-wrapper">Scent of authority<br /></span>
-                  <span class="span">Unspoken Influence</span>
-                </p>
-              </div>
-              <div class="background-2"></div>
+
+            <div class="relative z-10 text-white border-l-4 border-[#D4A34D] pl-6">
+                <h2 class="text-3xl font-light italic leading-tight">Scent of authority</h2>
+                <h1 class="text-6xl font-extrabold tracking-tight uppercase">Unspoken Influence</h1>
+                <div class="w-20 h-1 bg-[#D4A34D] mt-4"></div>
             </div>
-            <div class="container-2"></div>
-          </div>
-        </section>
-        <!-- Right Side: Registration Form -->
-        <section class="right-side" aria-label="Registration Form">
-          <div class="container-wrapper">
-            <div class="div">
-              <!-- Form Header -->
-              <header class="form-header">
-                <div class="div-wrapper-2">
-                  <h1 class="text-wrapper-2">Buat Akun Anda</h1>
+        </div>
+
+        <div class="w-full lg:w-1/2 flex items-center justify-center bg-white px-8 md:px-16 lg:px-24 py-12">
+            <div class="w-full max-w-lg">
+                
+                @if (session('success_message'))
+                    <div id="alert-success" class="mb-8 p-4 bg-green-50 border-l-4 border-green-500 text-green-800 shadow-sm flex items-center justify-between transform transition-all duration-500">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-medium italic">{{ session('success_message') }}</span>
+                        </div>
+                        <button onclick="this.parentElement.style.display='none'" class="text-green-500 hover:text-green-800 text-xl font-bold">×</button>
+                    </div>
+                    <script>
+                        setTimeout(() => {
+                            let alert = document.getElementById('alert-success');
+                            if(alert) alert.style.opacity = '0';
+                            setTimeout(() => { if(alert) alert.remove(); }, 500);
+                        }, 4000);
+                    </script>
+                @endif
+
+                <div class="mb-10">
+                    <h2 class="text-5xl font-serif text-gray-900 mb-3 leading-tight">Buat Akun Anda</h2>
+                    <p class="text-gray-400 italic text-lg font-light">Mulailah perjalanan wangimu hari ini.</p>
                 </div>
-                <div class="div-wrapper-2">
-                  <p class="p">Mulailah perjalanan wangimu hari ini.</p>
-                </div>
-              </header>
-              <!-- Registration Form -->
-              <form class="registration-form" novalidate aria-label="Form registrasi">
-                <!-- Nama Lengkap -->
-                <div class="div-2">
-                  <label class="nama-lengkap" for="nama-lengkap">NAMA LENGKAP</label>
-                  <div class="input">
-                    <input
-                      class="container-3 field-input"
-                      type="text"
-                      id="nama-lengkap"
-                      name="nama_lengkap"
-                      autocomplete="name"
-                      placeholder=""
-                      aria-required="true"
-                    />
-                  </div>
-                </div>
-                <!-- Alamat Email -->
-                <div class="div-2">
-                  <label class="alamat-email" for="alamat-email">ALAMAT EMAIL</label>
-                  <div class="input">
-                    <input
-                      class="container-3 field-input"
-                      type="email"
-                      id="alamat-email"
-                      name="alamat_email"
-                      autocomplete="email"
-                      placeholder=""
-                      aria-required="true"
-                    />
-                  </div>
-                </div>
-                <!-- Nama Pengguna -->
-                <div class="div-2">
-                  <label class="nama-pengguna" for="nama-pengguna">NAMA PENGGUNA</label>
-                  <div class="input">
-                    <input
-                      class="container-3 field-input"
-                      type="text"
-                      id="nama-pengguna"
-                      name="nama_pengguna"
-                      autocomplete="username"
-                      placeholder=""
-                      aria-required="true"
-                    />
-                  </div>
-                </div>
-                <!-- Kata Sandi -->
-                <div class="div-2">
-                  <label class="kata-sandi" for="kata-sandi">KATA SANDI</label>
-                  <div class="input password-input-wrapper">
-                    <input
-                      class="container-3 field-input"
-                      type="password"
-                      id="kata-sandi"
-                      name="kata_sandi"
-                      autocomplete="new-password"
-                      placeholder=""
-                      aria-required="true"
-                    />
-                    <button
-                      type="button"
-                      class="toggle-password"
-                      aria-label="Tampilkan kata sandi"
-                      data-target="kata-sandi"
-                    >
-                      <img class="eye-icon" src="img/icon-eye.svg" alt="" aria-hidden="true" />
-                    </button>
-                  </div>
-                </div>
-                <!-- Konfirmasi Kata Sandi -->
-                <div class="div-2">
-                  <label class="konfirmasi-kata" for="konfirmasi-kata-sandi">KONFIRMASI KATA SANDI</label>
-                  <div class="input password-input-wrapper">
-                    <input
-                      class="container-3 field-input"
-                      type="password"
-                      id="konfirmasi-kata-sandi"
-                      name="konfirmasi_kata_sandi"
-                      autocomplete="new-password"
-                      placeholder=""
-                      aria-required="true"
-                    />
-                    <button
-                      type="button"
-                      class="toggle-password"
-                      aria-label="Tampilkan konfirmasi kata sandi"
-                      data-target="konfirmasi-kata-sandi"
-                    >
-                      <img class="eye-icon" src="img/icon-eye.svg" alt="" aria-hidden="true" />
-                    </button>
-                  </div>
-                </div>
-                <!-- Terms & Conditions -->
-                <div class="terms-conditions">
-                  <input class="input-2" type="checkbox" id="terms" name="terms" aria-required="true" />
-                  <div class="div-wrapper">
-                    <label class="isetuju-dengan" for="terms">Isetuju dengan Syarat &amp; Ketentuan</label>
-                  </div>
-                </div>
-                <!-- Submit Button -->
-                <button class="submit-button" type="submit" aria-label="Daftar akun baru">
-                  <div class="submit-button-shadow"></div>
-                  <div class="container-4"><span class="text-2">Register</span></div>
-                  <div class="container-4"><img class="icon" src="img/icon.svg" alt="" aria-hidden="true" /></div>
-                </button>
-              </form>
-              <!-- Login Link -->
-              <div class="login-link">
-                <span class="text-wrapper-3">Sudah punya akun?</span>
-                <div class="link">
-                  <a class="text-3" href="/login">Login</a>
-                </div>
-              </div>
+
+                <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                    @csrf
+
+                    <div class="space-y-1 group">
+                        <label for="name" class="block text-xs font-bold text-gray-500 uppercase tracking-widest transition-colors group-focus-within:text-[#D4A34D]">Nama Lengkap</label>
+                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
+                            class="w-full px-0 py-2 border-b-2 border-gray-200 focus:border-[#D4A34D] bg-transparent outline-none transition-all duration-300 text-lg">
+                        <x-input-error :messages="$errors->get('name')" class="mt-1" />
+                    </div>
+
+                    <div class="space-y-1 group">
+                        <label for="email" class="block text-xs font-bold text-gray-500 uppercase tracking-widest transition-colors group-focus-within:text-[#D4A34D]">Alamat Email</label>
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
+                            class="w-full px-0 py-2 border-b-2 border-gray-200 focus:border-[#D4A34D] bg-transparent outline-none transition-all duration-300 text-lg">
+                        <x-input-error :messages="$errors->get('email')" class="mt-1" />
+                    </div>
+
+                    <div class="space-y-1 group">
+                        <label for="password" class="block text-xs font-bold text-gray-500 uppercase tracking-widest transition-colors group-focus-within:text-[#D4A34D]">Kata Sandi</label>
+                        <input id="password" type="password" name="password" required autocomplete="new-password"
+                            class="w-full px-0 py-2 border-b-2 border-gray-200 focus:border-[#D4A34D] bg-transparent outline-none transition-all duration-300 text-lg">
+                        <x-input-error :messages="$errors->get('password')" class="mt-1" />
+                    </div>
+
+                    <div class="space-y-1 group">
+                        <label for="password_confirmation" class="block text-xs font-bold text-gray-500 uppercase tracking-widest transition-colors group-focus-within:text-[#D4A34D]">Konfirmasi Kata Sandi</label>
+                        <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
+                            class="w-full px-0 py-2 border-b-2 border-gray-200 focus:border-[#D4A34D] bg-transparent outline-none transition-all duration-300 text-lg">
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1" />
+                    </div>
+
+                    <div class="flex items-center pt-2">
+                        <input id="terms" type="checkbox" required class="rounded border-gray-300 text-[#D4A34D] shadow-sm focus:ring-[#D4A34D]">
+                        <label for="terms" class="ml-2 text-sm text-gray-500 italic">
+                            Setuju dengan Syarat & Ketentuan
+                        </label>
+                    </div>
+
+                    <div class="pt-6">
+                        <button type="submit" class="w-full bg-[#D4A34D] hover:bg-black text-white font-bold py-4 rounded-sm shadow-xl transition-all duration-500 uppercase tracking-widest text-sm flex items-center justify-center group">
+                            Register 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <p class="text-center text-sm text-gray-400 pt-4">
+                        Sudah punya akun? <a href="{{ route('login') }}" class="font-bold text-gray-900 hover:text-[#D4A34D] ml-1 border-b border-gray-900">Login</a>
+                    </p>
+                </form>
+
             </div>
-          </div>
-        </section>
-      </div>
-    </main>
-    <script>
-      // Toggle password visibility
-      document.querySelectorAll(".toggle-password").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var targetId = btn.getAttribute("data-target");
-          var input = document.getElementById(targetId);
-          if (input) {
-            var isPassword = input.type === "password";
-            input.type = isPassword ? "text" : "password";
-            btn.setAttribute("aria-label", isPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi");
-          }
-        });
-      });
-    </script>
-  </body>
+        </div>
+    </div>
+</body>
 </html>

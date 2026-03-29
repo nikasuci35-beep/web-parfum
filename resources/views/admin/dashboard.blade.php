@@ -24,16 +24,19 @@
                     <li><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Daftar Transaksi</a></li>
                     <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Status Pesanan</a></li>
                 </ul>
-                <div class="divider"></div>
-                <ul>
-                    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                   <form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-        <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-</form>
-                </ul>
+               <div class="divider"></div>
+<ul>
+    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+    
+    <li class="logout-link">
+        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+            @csrf
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </form>
+    </li>
+</ul>
             </nav>
         </aside>
 

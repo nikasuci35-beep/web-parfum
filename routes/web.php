@@ -19,7 +19,7 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
-// Tambahkan ini di bawah baris 22 (setelah route register)
+
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::get('/search', [BerandaController::class, 'search'])->name('search');
@@ -37,9 +37,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('user.dashboard');
     })->name('user.dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // PERBAIKAN DI SINI: Membedakan URL index dan edit agar tidak bentrok
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/logout-others', [ProductController::class, 'logoutOthers'])->name('profile.logout-others');
 });
 
 // 4. Admin Routes

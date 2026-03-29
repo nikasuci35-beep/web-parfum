@@ -78,3 +78,40 @@ body { background-color: var(--bg-gray); color: var(--text-main); }
 .p-price { color: var(--gold-accent); font-weight: 600; font-size: 14px; }
 .p-actions { position: absolute; top: 15px; right: 15px; display: flex; gap: 12px; color: #CCC; font-size: 13px; }
 .text-red { color: #EF4444; }
+
+/* --- Tambahkan di bagian paling bawah dashboardadmin.css --- */
+
+/* Memastikan menu Logout sejajar dengan Settings */
+.sidebar-menu li.logout-link {
+    margin-top: 5px; /* Memberi sedikit jarak dari divider */
+}
+
+/* Styling teks dan ikon Logout agar berwarna merah sesuai desain */
+.sidebar-menu li.logout-link a {
+    color: #EF4444 !important; /* Warna merah terang */
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* Memastikan ikon ikut berwarna merah */
+.sidebar-menu li.logout-link a i {
+    color: #EF4444 !important;
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+/* Efek saat mouse diarahkan (hover) ke tombol logout */
+.sidebar-menu li.logout-link a:hover {
+    background-color: #FEF2F2; /* Latar merah sangat muda */
+    border-radius: 10px;
+}
+
+/* Menghapus margin bawaan form agar tidak merusak posisi list */
+.logout-link form {
+    margin: 0;
+}

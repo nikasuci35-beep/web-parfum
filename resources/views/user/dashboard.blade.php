@@ -17,7 +17,7 @@
                 <li><a href="#">JUAL</a></li>
                 <li><a href="#">KATEGORI</a></li>
                 <li><a href="#">TENTANG</a></li>
-                <li><a href="#">PROFIL</a></li>
+                <li><a href="{{ route('profile.index') }}">PROFIL</a></li>
             </ul>
             <div class="nav-right">
                 <div class="search-wrapper">

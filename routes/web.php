@@ -6,26 +6,28 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Models\Product;
 
-// 1. Home
+// 1. Publik (Bisa diakses tanpa login)
 Route::get('/', [BerandaController::class, 'index'])->name('home');
-
-// 2. Auth
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('/register', [RegisteredUserController::class, 'store']);
-
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
 Route::get('/search', [BerandaController::class, 'search'])->name('search');
 
-// 3. Protected Routes
+// 2. Auth (Hanya untuk tamu/belum login)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store']);
+});
+
+// Logout (Harus login dulu baru bisa logout)
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
+// 3. Gabungan (User & Admin)
 Route::middleware(['auth', 'verified'])->group(function () {
+    
+    // Logika pengalihan setelah login
     Route::get('/dashboard', function () {
         if (auth()->user()->role == 'admin') {
             return redirect()->route('admin.dashboard');
@@ -37,20 +39,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('user.dashboard');
     })->name('user.dashboard');
 
-    // PERBAIKAN DI SINI: Membedakan URL index dan edit agar tidak bentrok
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile/logout-others', [ProductController::class, 'logoutOthers'])->name('profile.logout-others');
+    // Profile
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('index');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    });
 });
 
-// 4. Admin Routes
+// 4. Khusus Admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [BerandaController::class, 'adminDashboard'])->name('dashboard'); 
     Route::resource('products', ProductController::class);
 });
-
-require __DIR__.'/auth.php';

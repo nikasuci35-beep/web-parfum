@@ -23,8 +23,7 @@
         <nav class="sidebar-nav">
             <a href="#"><i class="fas fa-th-large"></i> Dashboard</a>
             <a href="#" class="active"><i class="fas fa-user"></i> Profile</a>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-            <form method="POST" action="{{ route('logout') }}">
+             <li><form method="POST" action="{{ route('logout') }}">@csrf<a href="beranda.blade.php" onclick="event.preventDefault(); this.closest('form').submit();">LOG OUT</a></form></li>
                 @csrf
                 <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="logout-link">
                     <i class="fas fa-sign-out-alt"></i> Logout

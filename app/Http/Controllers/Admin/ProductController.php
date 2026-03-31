@@ -20,7 +20,7 @@ class ProductController extends Controller
         return view('admin.products.create');
     }
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -40,13 +40,14 @@ class ProductController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('admin.products.index')
-        ->with('success', 'Produk berhasil ditambahkan');
+        // Setelah TAMBAH produk, kembali ke DASHBOARD
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Produk berhasil ditambahkan');
     }
 
     public function edit(Product $product)
     {
-        return view('admin.products.edit', Compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
@@ -57,6 +58,7 @@ class ProductController extends Controller
             'image' => 'image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
+        // Logika update gambar jika ada file baru
         if ($request->hasFile('image')) {
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
@@ -64,10 +66,18 @@ class ProductController extends Controller
             $product->image = $request->file('image')->store('products', 'public');
         }
 
-        $product->update($request->only('name', 'price', 'description'));
+        // Update data text (name, price, description)
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'image' => $product->image // Memastikan image terbaru ikut tersimpan
+        ]);
 
-        return redirect()->route('admin.products.index')
-        ->with('success', 'Produk berhasil diupdate');
+        // --- PERBAIKAN DI SINI ---
+        // Setelah UPDATE produk, diarahkan kembali ke DASHBOARD ADMIN
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Produk berhasil diupdate');
     }
 
     public function destroy(Product $product)

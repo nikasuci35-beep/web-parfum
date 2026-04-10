@@ -13,18 +13,24 @@
         <div class="nav-content">
             <div class="nav-logo">ÉLIXIRÉ</div>
             <ul class="nav-links">
-                <li><form method="POST" action="{{ route('logout') }}">@csrf<a href="beranda.blade.php" onclick="event.preventDefault(); this.closest('form').submit();">LOG OUT</a></form></li>
-                <li><a href="#">JUAL</a></li>
-                <li><a href="#">KATEGORI</a></li>
-                <li><a href="#">TENTANG</a></li>
+                <li><a href="{{ route('user.dashboard') }}">DASHBOARD</a></li>
+                <li><a href="{{ route('user.produk') }}">PRODUK</a></li>
+                <li><a href="{{ route('user.kategori') }}">KATEGORI</a></li>
+                <li><a href="{{ route('user.pesanan') }}">PESANAN SAYA</a></li>
                 <li><a href="{{ route('profile.index') }}">PROFIL</a></li>
+                <li><form id="logout-form-final" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+                        <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form-final').submit();">
+                            <i class="fa-solid fa-right-from-bracket"></i><span>LOGOUT</span>
+                        </a></li>
             </ul>
             <div class="nav-right">
                 <div class="search-wrapper">
-                    <input type="text" placeholder="Cari parfum...">
+                    <form action="{{ route('user.dashboard') }}" method="GET" style="margin: 0; padding: 0;">
+                        <input type="text" name="query" placeholder="Cari parfum..." value="{{ request('query') }}" oninput="if(this.value === '') { window.location.href = '{{ route('user.dashboard') }}'; }">
+                    </form>
                 </div>
                 <div class="action-icons">
-                    <div class="icon-badge">❤️<span>0</span></div>
+                    <div class="icon-badge">💬<span>0</span></div>
                     <div class="icon-badge">🛒<span>0</span></div>
                 </div>
                 <div class="user-pill">
@@ -46,7 +52,9 @@
                     <p class="hero-subtext">Bebas pilih produk Adda dan konnel setelek bervard. Terikukan sorma khae Baru Anda hari ini.</p>
                     <div class="hero-btns">
                         <button class="btn-gold-fill">Belanja</button>
-                        <button class="btn-outline-gray">Lihat Keranjang</button>
+                        <a href="{{ route('user.keranjang') }}">
+    <button class="btn-outline-gray">Lihat Keranjang</button>
+</a>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -63,10 +71,19 @@
                 <a href="#" class="gold-link">JELAJAHI SEMUANYA</a>
             </div>
             <div class="category-flex">
-                <div class="cat-box" style="background-image: url('https://images.unsplash.com/photo-1502736842968-bcaab72d0700?q=80&w=300')"><span>Floral</span></div>
-                <div class="cat-box" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=300')"><span>Forest</span></div>
-                <div class="cat-box" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=300')"><span>Water</span></div>
-                <div class="cat-box" style="background-image: url('https://images.unsplash.com/photo-1595128484402-45a7698e66cb?q=80&w=300')"><span>Oud</span></div>
+                @foreach($categories->where('type', 'aroma')->take(4) as $cat)
+                <div class="cat-box" style="background-image: url('{{ $cat->image ? asset('storage/'.$cat->image) : 'https://images.unsplash.com/photo-1502736842968-bcaab72d0700?q=80&w=300' }}')"><span>{{ $cat->name }}</span></div>
+                @endforeach
+                
+                @if($luxuryCat = $categories->where('type', 'collection')->first())
+                <div class="cat-luxury-card">
+                    <img src="{{ $luxuryCat->image ? asset('storage/'.$luxuryCat->image) : 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=300' }}" alt="">
+                    <div class="lux-label">
+                        <small>Collection</small>
+                        <strong>{{ $luxuryCat->name }}</strong>
+                    </div>
+                </div>
+                @else
                 <div class="cat-luxury-card">
                     <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=300" alt="">
                     <div class="lux-label">
@@ -74,37 +91,37 @@
                         <strong>Luxury Collection</strong>
                     </div>
                 </div>
+                @endif
             </div>
         </section>
 
-        <section class="sec-wrap">
-            <h2 class="playfair mb-30">REKOMENDASI UNTUKMU</h2>
+        <section class="sec-wrap" id="rekomendasi-produk" style="scroll-margin-top: 100px;">
+            <h2 class="playfair mb-30">
+                REKOMENDASI UNTUKMU
+                @if(request('query'))
+                    <span style="font-size:16px; font-weight:normal; color:#888; text-transform:none;">- Hasil pencarian untuk: "{{ request('query') }}"</span>
+                @endif
+            </h2>
             <div class="product-grid">
-                @php
-                    $items = [
-                        ['n' => "Nuit d'Or", 'p' => '210.00', 'd' => 'The finest Perfum, Inforineous'],
-                        ['n' => 'Saye Elhever', 'p' => '185.00', 'd' => 'Product Rose, H & Hagan, Mkan'],
-                        ['n' => 'Oud Blanc', 'p' => '346.00', 'd' => 'White Oud, Vanila, Vamuer'],
-                        ['n' => 'L’Amber Prex', 'p' => '195.00', 'd' => 'Lauer Amber, Gartienary, Teravura']
-                    ];
-                @endphp
-                @foreach($items as $i)
+                @forelse($products as $p)
                 <div class="item-card">
                     <div class="item-img">
-                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=400" alt="">
+                        <img src="{{ $p->image ? asset('storage/'.$p->image) : 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=400' }}" alt="{{ $p->name }}">
                         <div class="heart-icon">♡</div>
                     </div>
                     <div class="item-info">
-                        <div class="rating">★★★★★ <small>1100</small></div>
-                        <h3>{{ $i['n'] }}</h3>
-                        <p>{{ $i['d'] }}</p>
+                        <div class="rating">★★★★★ <small>{{ rand(500, 2500) }}</small></div>
+                        <h3 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $p->name }}">{{ $p->name }}</h3>
+                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $p->description ?? 'Deskripsi parfum elegan ELIXIRE...' }}</p>
                         <div class="card-bottom">
-                            <span class="price">${{ $i['p'] }}</span>
+                            <span class="price">Rp {{ number_format($p->price, 0, ',', '.') }}</span>
                             <button class="btn-add">ADD</button>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                    <p style="grid-column: span 4; text-align: center; color: #888; padding: 50px;">Belum ada produk untuk ditampilkan.</p>
+                @endforelse
             </div>
         </section>
 
@@ -162,5 +179,16 @@
         </div>
     </footer>
 
+    <script>
+        // Auto scroll ke bagian produk setelah pencarian (seperti fitur admin dashboard)
+        @if(request('query'))
+            document.addEventListener("DOMContentLoaded", function() {
+                var el = document.getElementById('rekomendasi-produk');
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        @endif
+    </script>
 </body>
 </html>

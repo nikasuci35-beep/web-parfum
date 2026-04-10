@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap');
+
+/* Base Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background-color: #fdfdfd; color: #1a1a1a; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+
+/* Header */
+.category-header { text-align: center; margin-bottom: 60px; }
+.category-header h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3rem; 
+    text-transform: uppercase; 
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+.category-header p { 
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    color: #888; 
+}
+
+.navbar-elixire { background: #fff; border-bottom: 1px solid #f0f0f0; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; }
+.nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; letter-spacing: 2px; }
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a { text-decoration: none; color: #888; font-size: 11px; font-weight: 700; transition: 0.3s; }
+.nav-links a:hover { color: #c5a059; }
+
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.search-wrapper { background: #f5f5f5; border-radius: 20px; padding: 6px 15px; }
+.search-wrapper input { border: none; background: transparent; outline: none; font-size: 12px; width: 150px; }
+.action-icons { display: flex; gap: 15px; font-size: 18px; cursor: pointer; }
+.icon-badge { position: relative; }
+.icon-badge span { position: absolute; top: -5px; right: -8px; background: #000; color: #fff; font-size: 9px; padding: 1px 4px; border-radius: 50%; }
+
+.user-pill { display: flex; align-items: center; gap: 10px; padding-left: 15px; border-left: 1px solid #eee; }
+.user-meta { text-align: right; line-height: 1; }
+.user-meta small { font-size: 8px; color: #aaa; }
+.user-meta strong { display: block; font-size: 12px; }
+.user-pill img { width: 35px; height: 35px; border-radius: 50%; }
+
+/* Category Grid */
+.category-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
+    margin-bottom: 50px;
+}
+
+.category-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 8px; /* Sedikit lengkung sesuai gambar */
+    cursor: pointer;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.category-card:hover img { transform: scale(1.05); }
+
+/* Overlay Text on Image */
+.category-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    color: white;
+}
+
+.category-overlay h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.category-overlay span {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Scent Families Tags */
+.scent-families {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.scent-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-right: 10px; }
+
+.tag {
+    padding: 8px 20px;
+    background: #eeeeee;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #555;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tag.active { background: #8e7b56; color: white; }
+
+/* Luxury Collection Section (Banner) */
+.luxury-banner {
+    display: flex;
+    align-items: center;
+    background: #f8f8f8;
+    margin: 80px 0;
+    padding: 60px;
+    gap: 40px;
+}
+
+.banner-text { flex: 1; }
+.banner-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
+.banner-text p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 30px; }
+
+.btn-gold {
+    padding: 12px 30px;
+    background: linear-gradient(to right, #bfa37c, #d4bb93);
+    color: white;
+    text-decoration: none;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+.banner-img { flex: 1; }
+.banner-img img { width: 100%; border-radius: 5px; }

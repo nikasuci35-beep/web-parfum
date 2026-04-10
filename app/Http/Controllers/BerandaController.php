@@ -11,7 +11,7 @@ class BerandaController extends Controller
     public function index() 
     {
         $products = Product::all(); 
-        return view('beranda', compact('products')); // Pastikan ada file beranda.blade.php
+        return view('berandautama', compact('products')); // Pastikan ada file beranda.blade.php
     }
 
     // UNTUK ADMIN (Dashboard)
@@ -26,7 +26,7 @@ class BerandaController extends Controller
     {
         $keyword = $request->input('query');
         $products = Product::where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('category', 'LIKE', "%$keyword%")
+                    ->orWhere('description', 'LIKE', "%$keyword%")
                     ->get();
 
         return view('beranda', compact('products'));

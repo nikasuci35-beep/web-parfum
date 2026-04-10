@@ -68,13 +68,21 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="{{ route('admin.products.index') }}">
+                        <a href="{{ route('admin.dashboard') }}">
                             <i class="fa-solid fa-box-open"></i> Produk Anda
                         </a>
                     </li>
-                    <li><a href="#"><i class="fa-solid fa-tags"></i> Jenis Kategori</a></li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}#manage-categories">
+                            <i class="fa-solid fa-tags"></i> Jenis Kategori
+                        </a>
+                    </li>
                     <li><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Daftar Transaksi</a></li>
-                    <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Status Pesanan</a></li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}#status-pesanan">
+                            <i class="fa-solid fa-truck-fast"></i> Status Pesanan
+                        </a>
+                    </li>
                 </ul>
                 <div class="divider" style="margin: 20px 0; border-top: 1px solid #eee;"></div>
                 <ul>
@@ -117,9 +125,45 @@
                         <input type="text" name="name" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" placeholder="Masukan nama parfum..." required>
                     </div>
 
-                    <div class="form-group" style="margin-bottom: 25px;">
-                        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Harga (Rp)</label>
-                        <input type="number" name="price" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" placeholder="Rp" required>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 25px;">
+                        <div>
+                            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Harga (Rp)</label>
+                            <input type="number" name="price" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" placeholder="Rp" required>
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Stok (Jumlah)</label>
+                            <input type="number" name="stock" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" placeholder="Contoh: 100" required>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px; margin-bottom: 25px;">
+                        <div>
+                            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Target (Gender)</label>
+                            <select name="categories[]" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;">
+                                <option value="" disabled selected>Pilih...</option>
+                                @foreach($categories->where('type', 'product') as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Aroma</label>
+                            <select name="categories[]" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;">
+                                <option value="" disabled selected>Pilih...</option>
+                                @foreach($categories->where('type', 'aroma') as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Collection</label>
+                            <select name="categories[]" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;">
+                                <option value="" disabled selected>Pilih...</option>
+                                @foreach($categories->where('type', 'collection') as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group" style="margin-bottom: 25px;">
@@ -145,14 +189,7 @@
         </main>
     </div>
 
-    <script>
-        document.getElementById('createProductForm').onsubmit = function() {
-            // Memberi sedikit delay agar request sempat terproses server sebelum pindah halaman
-            setTimeout(function() {
-                window.location.href = "{{ route('admin.dashboard') }}";
-            }, 800); 
-        };
-    </script>
+
 
 </body>
 </html>

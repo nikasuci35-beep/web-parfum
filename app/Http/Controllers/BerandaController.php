@@ -21,7 +21,6 @@ class BerandaController extends Controller
         return view('admin.dashboard', compact('products')); // Pastikan ada file admin/dashboard.blade.php
     }
 
-    // UNTUK PENCARIAN
     public function search(Request $request)
     {
         $keyword = $request->input('query');
@@ -29,6 +28,6 @@ class BerandaController extends Controller
                     ->orWhere('description', 'LIKE', "%$keyword%")
                     ->get();
 
-        return view('beranda', compact('products'));
+        return view('berandautama', compact('products'));
     }
 }

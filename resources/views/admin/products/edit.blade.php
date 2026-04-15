@@ -68,11 +68,26 @@
             </div>
             <nav class="sidebar-menu">
                 <ul>
-                    <li><a href="{{ route('admin.dashboard') }}"><i class="fa-solid fa-house-chimney"></i> Dashboard</a></li>
-                    <li class="active"><a href="{{ route('admin.products.index') }}"><i class="fa-solid fa-box-open"></i> Produk Anda</a></li>
-                    <li><a href="#"><i class="fa-solid fa-tags"></i> Jenis Kategori</a></li>
-                    <li><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Daftar Transaksi</a></li>
-                    <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Status Pesanan</a></li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}">
+                            <i class="fa-solid fa-house-chimney"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ route('admin.dashboard') }}">
+                            <i class="fa-solid fa-box-open"></i> Produk Anda
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}#manage-categories">
+                            <i class="fa-solid fa-tags"></i> Jenis Kategori
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}#status-pesanan">
+                            <i class="fa-solid fa-file-invoice-dollar"></i> Transaksi & Status
+                        </a>
+                    </li>
                 </ul>
                 <div class="divider" style="margin: 20px 0; border-top: 1px solid #eee;"></div>
                 <ul>
@@ -111,7 +126,7 @@
                         <input type="text" name="name" value="{{ old('name', $product->name) }}" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" required>
                     </div>
 
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 25px;">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px; margin-bottom: 25px;">
                         <div>
                             <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Harga (Rp)</label>
                             <input type="number" name="price" value="{{ old('price', $product->price) }}" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" required>
@@ -119,6 +134,10 @@
                         <div>
                             <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Stok (Jumlah)</label>
                             <input type="number" name="stock" value="{{ old('stock', $product->stock) }}" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" placeholder="Contoh: 100" required>
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #333;">Ukuran (Size)</label>
+                            <input type="text" name="size" value="{{ old('size', $product->size) }}" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; outline: none; font-family: 'Poppins', sans-serif;" placeholder="Contoh: 50ml" required>
                         </div>
                     </div>
 

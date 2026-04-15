@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\User;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::latest();
+        $query = Product::with('categories')->latest();
         
         if ($request->has('query') && $request->get('query') != '') {
             $searchTerm = $request->get('query');
@@ -21,11 +23,24 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-        // Mengambil kategori dengan hitungan produk
         $categories = Category::all();
+
+        // Dashboard Stats
+        $totalOrders = Order::count();
+        $totalUsers = Order::distinct('user_id')->count('user_id');
+        $totalRevenue = Order::sum('total_price');
         
-        // MENGARAH KE FILE BARU KAMU: dashboard_admin.blade.php
-        return view('admin.dashboard', compact('products', 'categories'));
+        // All Orders / Transactions
+        $orders = Order::with('user')->latest()->get();
+        
+        return view('admin.dashboard', compact(
+            'products', 
+            'categories', 
+            'totalOrders', 
+            'totalUsers', 
+            'totalRevenue', 
+            'orders'
+        ));
     }
 
     public function create()
@@ -42,7 +57,8 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'categories' => 'required|array',
             'categories.*' => 'exists:categories,id',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'size' => 'nullable|string|max:100',
         ]);
 
         $imagePath = null;
@@ -56,6 +72,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'image' => $imagePath,
             'stock' => $request->stock,
+            'size' => $request->size,
         ]);
 
         $product->categories()->sync($request->categories);
@@ -77,7 +94,8 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'categories' => 'required|array',
             'categories.*' => 'exists:categories,id',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'size' => 'nullable|string|max:100',
         ]);
 
         $data = $request->all();

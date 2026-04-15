@@ -77,12 +77,138 @@ body.bg-light { background-color: #fbfbfb; font-family: 'Plus Jakarta Sans', san
 .dot-gold { width: 7px; height: 7px; background: #c5a059; border-radius: 50%; display: inline-block; margin-right: 5px; }
 .btn-retail { color: #1a1a1a; font-weight: 800; text-decoration: none; font-size: 11px; }
 
-/* Footer Black */
-.footer-black { background: #1a1a1a; color: #fff; padding: 80px 8%; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr 1.5fr; gap: 40px; }
-.f-col-logo p { color: #888; font-size: 13px; margin: 20px 0; line-height: 1.6; }
-.f-col h4 { font-size: 12px; color: #c5a059; margin-bottom: 25px; letter-spacing: 1px; }
-.f-col a { display: block; color: #888; text-decoration: none; margin-bottom: 12px; font-size: 13px; transition: 0.3s; }
-.subscribe-box { background: #2a2a2a; padding: 5px; border-radius: 8px; display: flex; margin-top: 20px; }
-.subscribe-box input { background: transparent; border: none; color: #fff; padding: 10px; flex: 1; outline: none; }
-.subscribe-box button { background: #c5a059; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+/* --- HORIZONTAL NAVBAR FOOTER --- */
+.footer-luxury {
+    background: #111112;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+/* Col 1: Branding */
+.footer-brand-side .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: #fff;
+    display: block;
+}
+
+/* Col 2: Links */
+.horizontal-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.horizontal-nav li a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.horizontal-nav li a:hover {
+    color: #c6a75e;
+}
+
+/* Col 3: Socials */
+.footer-right-side .footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-right-side .footer-socials a {
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.footer-right-side .footer-socials a:hover {
+    color: #c6a75e;
+}
+
+/* Contact Bar */
+.footer-contact-wrapper {
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Pembatas tipis */
+    background: rgba(0, 0, 0, 0.2); /* Sedikit lebih gelap */
+}
+
+.footer-contact-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.footer-contact-bar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-contact-bar li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #bbb;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.footer-contact-bar li i {
+    color: #c6a75e;
+    font-size: 16px;
+}
+
+/* Bottom Bar */
+.footer-copyright-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #0a0a0a;
+}
+
+.footer-copyright-bar p {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-navbar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .horizontal-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer-contact-bar ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}

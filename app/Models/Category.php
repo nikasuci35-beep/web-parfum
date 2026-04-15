@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     // TAMBAHKAN BARIS INI
-    protected $fillable = ['name', 'type'];
+    protected $fillable = ['name', 'type', 'image', 'status'];
 
     public function products()
     {

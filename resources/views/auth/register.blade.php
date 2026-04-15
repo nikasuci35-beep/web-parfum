@@ -10,7 +10,7 @@
     <div class="flex min-h-screen w-full">
         
         <div class="hidden lg:flex lg:w-1/2 relative items-end pb-24 pl-16 bg-black">
-            <img src="{{ asset('img/bg-login.jpg') }}" class="absolute inset-0 w-full h-full object-cover opacity-60">
+            <img src="{{ asset('image/fotoregister.png') }}" class="absolute inset-0 w-full h-full object-cover opacity-60">
             
             <div class="absolute top-10 left-10 z-20">
                 <h3 class="text-white font-bold tracking-[0.3em] text-xl">ÉLIXIRÉ</h3>

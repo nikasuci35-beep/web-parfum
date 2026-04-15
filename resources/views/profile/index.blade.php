@@ -21,47 +21,43 @@
         padding: 0 15px;
     }
 
-    /* 2. Reset Gaya Link (Agar tidak berantakan & tidak ada garis bawah) */
+    /* 2. Reset Gaya Link (Agar identik dengan dashboard admin) */
     .sidebar-nav a {
         display: flex !important;
         align-items: center !important;
-        padding: 12px 16px !important;
-        text-decoration: none !important; /* Hapus garis bawah */
-        color: #666 !important;           /* Warna teks default abu-abu */
-        border-radius: 10px !important;   /* Pinggiran melengkung */
+        padding: 12px 15px !important;
+        text-decoration: none !important;
+        color: #8E8E8E !important;        /* Sama dengan --sidebar-text admin */
+        border-radius: 8px !important;    /* Sama dengan radius admin */
         font-size: 14px !important;
-        font-weight: 500 !important;
-        transition: all 0.2s ease !important;
+        font-family: 'Poppins', sans-serif !important; /* Font admin */
+        transition: 0.3s !important;      /* Transisi admin */
         background-color: transparent !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        gap: 15px !important;             /* Jarak teks ke ikon */
     }
 
-    /* Jarak antara Icon dan Teks */
+    /* Ukuran tetap di Icon, tidak butuh margin-right karena ada gap */
     .sidebar-nav a i {
-        margin-right: 12px !important;
         width: 20px;
         text-align: center;
         font-size: 16px;
     }
 
-    /* 3. EFEK AKTIF (INI YANG KAMU MAU - HITAM & PUTIH) */
-    .sidebar-nav a.active {
-        background-color: #1a1a1a !important; /* Latar Hitam */
-        color: #ffffff !important;           /* Teks Putih */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    /* 3. EFEK AKTIF & HOVER (Sama persis dengan admin) */
+    .sidebar-nav a.active,
+    .sidebar-nav a:hover:not([href$="logout"]),
+    .sidebar-nav a:active:not([href$="logout"]) {
+        background: #1A1A1A !important; /* Background aktif/di-klik/di-hover */
+        color: #ffffff !important;      /* Teks putih */
+        box-shadow: none !important;
     }
 
-    /* Pastikan Icon juga jadi putih saat aktif */
-    .sidebar-nav a.active i {
+    .sidebar-nav a.active i,
+    .sidebar-nav a:hover:not([href$="logout"]) i,
+    .sidebar-nav a:active:not([href$="logout"]) i {
         color: #ffffff !important;
-    }
-
-    /* 4. Efek Hover untuk yang tidak aktif */
-    .sidebar-nav a:hover:not(.active):not(.logout-btn) {
-        background-color: #f5f5f5 !important;
-        color: #000 !important;
-        text-decoration: none !important;
     }
 
     /* 5. Khusus Logout agar tidak ikut hitam */
@@ -74,15 +70,15 @@
 <body class="profile-body">
 
     <aside class="profile-sidebar">
-        <div class="sidebar-user">
+        <div class="sidebar-user" style="display: flex; align-items: center; gap: 15px; padding: 0 15px 25px 15px; margin-bottom: 25px; border-bottom: 1px solid #EDEDED;">
             @if(Auth::user()->avatar)
-    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile Photo" class="sidebar-avatar" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-@else
-    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=F7E9C8&color=333" alt="Avatar">
-@endif
+                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile Photo" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover;">
+            @else
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=F7E9C8&color=333" alt="Avatar" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover;">
+            @endif
             <div class="user-meta">
-                <strong>{{ Auth::user()->name }}</strong>
-                <small>{{ ucfirst(Auth::user()->role ?? 'User') }}</small>
+                <strong style="display: block; font-size: 15px; color: #1A1A1A; font-family: 'Poppins', sans-serif; font-weight: 600;">{{ Auth::user()->name }}</strong>
+                <small style="display: block; font-size: 12px; color: #8E8E8E; margin-top: 2px;">{{ ucfirst(Auth::user()->role ?? 'User') }}</small>
             </div>
         </div>
        <nav class="sidebar-nav">

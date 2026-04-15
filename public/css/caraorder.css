@@ -1,0 +1,141 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+    --gold: #C5A059;
+    --black: #1A1A1A;
+    --gray-light: #FBFBFB;
+    --gray-text: #888;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--gray-light);
+    color: var(--black);
+}
+
+.playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Header */
+.page-header {
+    background: #fff;
+    padding: 60px 5%;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.page-header p {
+    color: var(--gray-text);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Steps Section */
+.steps-container {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 5%;
+    position: relative;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.step-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.step-number {
+    font-size: 8rem;
+    font-family: 'Playfair Display', serif;
+    color: rgba(197, 160, 89, 0.1);
+    position: absolute;
+    top: -40px;
+    left: -20px;
+    z-index: 0;
+    line-height: 1;
+}
+
+.step-item:nth-child(even) .step-number {
+    left: auto;
+    right: -20px;
+}
+
+.step-icon {
+    flex: 0 0 120px;
+    height: 120px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--gold);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    z-index: 1;
+}
+
+.step-content {
+    flex: 1;
+    z-index: 1;
+}
+
+.step-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.step-content p {
+    line-height: 1.8;
+    color: var(--gray-text);
+    font-size: 1.05rem;
+}
+
+/* Payment Icons */
+.payment-section {
+    background: #fff;
+    padding: 100px 5%;
+    text-align: center;
+}
+
+.payment-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    opacity: 0.6;
+}
+
+.payment-grid img {
+    height: 30px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .step-item {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 20px;
+    }
+    .step-number {
+        font-size: 5rem;
+        top: -20px;
+    }
+}

@@ -1,0 +1,203 @@
+/* c:\E Commerce\backend\public\css\cekresi.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-gold: #c5a059;
+    --dark-bg: #111112;
+    --luxury-white: #fdfdfd;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.tracking-container {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.tracking-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tracking-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.tracking-header p {
+    color: #888;
+    font-size: 16px;
+}
+
+.tracking-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.luxury-input, .luxury-select {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1.5px solid #eee;
+    background: #fafafa;
+    font-size: 15px;
+    transition: 0.3s;
+    outline: none;
+}
+
+.luxury-input:focus, .luxury-select:focus {
+    border-color: var(--primary-gold);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+}
+
+.btn-track {
+    width: 100%;
+    padding: 18px;
+    border-radius: 12px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-track:hover {
+    background: var(--primary-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+}
+
+/* Result Section */
+.result-section {
+    margin-top: 40px;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.summary-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid #f0f0f0;
+    margin-bottom: 30px;
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.summary-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.status-label {
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #e3f2fd;
+    color: #2196f3;
+}
+
+.history-list {
+    position: relative;
+    padding-left: 30px;
+}
+
+.history-list::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #f0f0f0;
+}
+
+.history-item {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.history-item::after {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    border: 2px solid #fff;
+    z-index: 2;
+}
+
+.history-item.latest::after {
+    background: var(--primary-gold);
+    box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.2);
+}
+
+.history-date {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.history-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.alert-luxury {
+    background: #fff5f5;
+    color: #c53030;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #fed7d7;
+    margin-top: 30px;
+}
